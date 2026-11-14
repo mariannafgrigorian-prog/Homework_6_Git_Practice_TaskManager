@@ -90,6 +90,7 @@ namespace TaskTracker.Services
         {
             return tasks.Count;
         }
+
         public string GetStatistics()
         {
             int total = tasks.Count;
@@ -106,6 +107,21 @@ namespace TaskTracker.Services
             int total = tasks.Count;
             int doneCount = GetTasksByStatus(TaskStatus.Done).Count;
             return $"Всего задач: {total}, Завершено: {doneCount}";
+        }
+        
+
+        public List<TaskItem> GetTasksByPriority(TaskPriority priority)
+        {
+            List<TaskItem> result = new List<TaskItem>();
+            for (int i = 0; i < tasks.Count; i++)
+            {
+                if (tasks[i].Priority == priority)
+                {
+                    result.Add(tasks[i]);
+                }
+            }
+            return result;
+
         }
     }
 }
